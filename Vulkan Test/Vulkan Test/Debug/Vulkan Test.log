@@ -1,0 +1,11 @@
+﻿  Main.cpp
+c:\users\aikow\onedrive\documents\visual studio 2017\projects\vulkan test\vulkan test\main.cpp(187): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\aikow\onedrive\documents\visual studio 2017\projects\vulkan test\vulkan test\main.cpp(204): warning C4244: 'argument': conversion from 'float' to 'uint16_t', possible loss of data
+c:\users\aikow\onedrive\documents\visual studio 2017\projects\vulkan test\vulkan test\main.cpp(206): warning C4244: 'argument': conversion from 'float' to 'uint16_t', possible loss of data
+c:\users\aikow\onedrive\documents\visual studio 2017\projects\vulkan test\vulkan test\main.cpp(208): warning C4244: 'argument': conversion from 'float' to 'uint16_t', possible loss of data
+c:\users\aikow\onedrive\documents\visual studio 2017\projects\vulkan test\vulkan test\main.cpp(213): warning C4244: 'argument': conversion from 'float' to 'uint16_t', possible loss of data
+c:\users\aikow\onedrive\documents\visual studio 2017\projects\vulkan test\vulkan test\main.cpp(215): warning C4244: 'argument': conversion from 'float' to 'uint16_t', possible loss of data
+c:\users\aikow\onedrive\documents\visual studio 2017\projects\vulkan test\vulkan test\main.cpp(217): warning C4244: 'argument': conversion from 'float' to 'uint16_t', possible loss of data
+c:\users\aikow\onedrive\documents\visual studio 2017\projects\vulkan test\vulkan test\main.cpp(1061): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\aikow\onedrive\documents\visual studio 2017\projects\vulkan test\vulkan test\main.cpp(1124): warning C4838: conversion from 'int' to 'uint32_t' requires a narrowing conversion
+  Vulkan Test.vcxproj -> C:\Users\aikow\OneDrive\Documents\Visual Studio 2017\Projects\Vulkan Test\Debug\Vulkan Test.exe
