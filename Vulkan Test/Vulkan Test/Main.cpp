@@ -9,6 +9,7 @@
 #include <chrono>
 
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <stdexcept>
 #include <algorithm>
@@ -103,23 +104,23 @@ struct UniformBufferObject {
 
 /*
 const std::vector<Vertex> vertices = {
-	{ { -0.5f, -0.5f, -0.5f },{ 1.0f, 1.0f, 1.0f } },
-	{ { -0.5f,- 0.5f, 0.5f },{ 1.0f, 1.0f, 0.0f } },
-	{ { -0.5f, 0.5f, -0.5f },{ 1.0f, 0.0f, 1.0f } },
-	{ { -0.5f, 0.5f, 0.5f },{ 1.0f, 0.0f, 0.0f } },
-	{ { 0.5f, -0.5f, -0.5f },{ 0.0f, 1.0f, 1.0f } },
-	{ { 0.5f, -0.5f, 0.5f },{ 0.0f, 1.0f, 0.0f } },
-	{ { 0.5f, 0.5f, -0.5f },{ 0.0f, 0.0f, 1.0f } },
-	{ { 0.5f, 0.5f, 0.5f },{ 0.0f, 0.0f, 0.0f } }
+{ { -0.5f, -0.5f, -0.5f },{ 1.0f, 1.0f, 1.0f } },
+{ { -0.5f,- 0.5f, 0.5f },{ 1.0f, 1.0f, 0.0f } },
+{ { -0.5f, 0.5f, -0.5f },{ 1.0f, 0.0f, 1.0f } },
+{ { -0.5f, 0.5f, 0.5f },{ 1.0f, 0.0f, 0.0f } },
+{ { 0.5f, -0.5f, -0.5f },{ 0.0f, 1.0f, 1.0f } },
+{ { 0.5f, -0.5f, 0.5f },{ 0.0f, 1.0f, 0.0f } },
+{ { 0.5f, 0.5f, -0.5f },{ 0.0f, 0.0f, 1.0f } },
+{ { 0.5f, 0.5f, 0.5f },{ 0.0f, 0.0f, 0.0f } }
 };
 
 const std::vector<uint16_t> indices = {
-	0, 2, 3, 3, 1, 0,
-	1, 3, 7, 7, 5, 1,
-	7, 6, 4, 4, 5, 7, 
-	6, 2, 0, 0, 4, 6,
-	2, 6, 7, 7, 3, 2,
-	1, 5, 4, 4, 0, 1
+0, 2, 3, 3, 1, 0,
+1, 3, 7, 7, 5, 1,
+7, 6, 4, 4, 5, 7,
+6, 2, 0, 0, 4, 6,
+2, 6, 7, 7, 3, 2,
+1, 5, 4, 4, 0, 1
 };
 */
 
@@ -183,39 +184,44 @@ private:
 	std::vector<uint16_t> indices;
 
 	void createData() {
-		float num = 5;
+		float num = 100;
 		float numd = num / 2.0;
 		float r = 1;
 		for (float t = 0; t <= num; t++) {
 			for (float s = 0; s <= num; s++) {
-				float theta = glm::pi<float>()*2*t/num;
-				float psi = glm::pi<float>()*s/num;
+				float theta = glm::pi<float>() * 2 * s / num;
+				float psi = glm::pi<float>()*t / num;
 				float x = r*cos(theta)*sin(psi);
 				float y = r*sin(theta)*sin(psi);
 				float z = r*cos(psi);
-//				std::cout << "(" << x << ", " << y << ", " << z << ")" << std::endl;
-				vertices.push_back({ { x, y, z },{ 0.5 + s/num/2.0, 0.0f, 0.5f - t/num/2.0} });
+
+				//				std::cout << "(" << std::fixed
+				//					<< std::setw(5) << std::setprecision(2) << ((std::abs(x) < 0.01) ? 0.00 : x) << ", "
+				//					<< std::setw(5) << std::setprecision(2) << ((std::abs(y) < 0.01) ? 0.00 : y) << ", "
+				//					<< std::setw(5) << std::setprecision(2) << ((std::abs(z) < 0.01) ? 0.00 : z)
+				//					<< ")" << std::endl;
+				vertices.push_back({ { x, y, z },{ t / num, s * 2 / num, 0 } });
 			}
 		}
 
 		for (int t = 1; t <= num; t++) {
 			for (int s = 0; s <= num; s++) {
-//				std::cout << "(" << t << ", " << s << ", " << num << ") ";
+				//				std::cout << "(" << t << ", " << s << ", " << num << ") ";
 				indices.push_back(t*num + s);
-//				std::cout << t*num + s << ", ";
+				//				std::cout << t*num + s << ", ";
 				indices.push_back(t*num + s + 1);
-//				std::cout << t*num + s + 1 << ", ";
-				indices.push_back((t-1)*num + s);
-//				std::cout << (t-1)*num + s << ", ";
+				//				std::cout << t*num + s + 1 << ", ";
+				indices.push_back((t - 1)*num + s);
+				//				std::cout << (t-1)*num + s << ", ";
 
 
-				
+
 				indices.push_back(t*num + s);
-//				std::cout << t*num + s << ", ";
+				//				std::cout << t*num + s << ", ";
 				indices.push_back(t*num + s - 1);
-//				std::cout << t*num + s - 1 << ", ";
+				//				std::cout << t*num + s - 1 << ", ";
 				indices.push_back((t + 1)*num + s);
-//				std::cout << (t + 1)*num + s << ", " << std::endl;;
+				//				std::cout << (t + 1)*num + s << ", " << std::endl;;
 			}
 		}
 	}
@@ -1061,7 +1067,7 @@ private:
 			fps = (double)frames / (time - starttime);
 			starttime = time;
 			frames = 0;
-//			std::cout << fps << std::endl;
+			//			std::cout << fps << std::endl;
 		}
 	}
 
