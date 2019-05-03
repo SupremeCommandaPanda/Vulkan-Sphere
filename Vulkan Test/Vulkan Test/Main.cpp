@@ -184,7 +184,7 @@ private:
 	std::vector<uint16_t> indices;
 
 	void createData() {
-		float num = 100;
+		float num = 5;
 		float numd = num / 2.0;
 		float r = 1;
 		for (float t = 0; t <= num; t++) {
